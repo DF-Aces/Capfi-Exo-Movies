@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Ajouter un film</h1>
+<div mat-dialog-content [formGroup]="movieForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Primary Title</mat-label>
+    <input formControlName="primaryTitle" matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Original Title</mat-label>
+    <input formControlName="originalTitle" matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Start Year</mat-label>
+    <input formControlName="startYear" matInput type="number">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()" >Annuler</button>
+  <button mat-button [disabled]="movieForm.invalid" (click)="submitForm()">Ajouter</button>
+</div>

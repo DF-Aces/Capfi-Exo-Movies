@@ -1,0 +1,50 @@
+<div *ngIf="!loader else loading" fxLayout="column" fxLayoutAlign="space-around center">
+  <mat-card class="form">
+    <app-search-bar (emitValue)="changeValue($event)"></app-search-bar>
+    <mat-card-actions>
+      <button mat-button (click)="openDialogMovie()">Ajouter un film</button>
+    </mat-card-actions>
+  </mat-card>
+  <table mat-table [dataSource]="movieDatas" matSort>
+
+    <ng-container matColumnDef="primaryTitle" class="c-row">
+      <th mat-header-cell *matHeaderCellDef> Primary Title</th>
+      <td mat-cell *matCellDef="let element"> {{element.primaryTitle}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="originalTitle">
+      <th mat-header-cell *matHeaderCellDef> Original Title</th>
+      <td mat-cell *matCellDef="let element"> {{element.originalTitle}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="startYear">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by start date"> Start Year</th>
+      <td mat-cell *matCellDef="let element"> {{element.startYear}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endYear">
+      <th mat-header-cell *matHeaderCellDef> End Year</th>
+      <td mat-cell *matCellDef="let element"> {{element.endYear}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="runtimeMinutes">
+      <th mat-header-cell *matHeaderCellDef> Runtime Minutes</th>
+      <td mat-cell *matCellDef="let element"> {{element.runtimeMinutes}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="genres">
+      <th mat-header-cell *matHeaderCellDef>Genres</th>
+      <td mat-cell *matCellDef="let element"> {{element.genres}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<ng-template #loading>
+  <div fxFill fxLayout="column" fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+    <p>Chargement des données ...</p>
+  </div>
+</ng-template>
